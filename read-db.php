@@ -7,7 +7,7 @@ $dpass = 'myUserPass001';
 
 //Connect now
 
-$con = new 	PDO("mysqli:host=$host;dbname=$dbname;",$duser,$dpass);
+$con = new 	PDO("mysql:host=$host;dbname=$dbname;",$duser,$dpass);
 
 //Now fetch results using PDO
 
@@ -16,9 +16,10 @@ $fetch = $con->prepare("select id, stage, task from challenge order by id desc")
 if($fetch->rowCount())
 {
 	?>
-	<table><tr><th>Id</th><th>Challenge Stage</th><th>Challenge Task</th></tr>
+	<table>
+	<tr><th>Id</th><th>Challenge Stage</th><th>Challenge Task</th></tr>
 	<?php
-while($fetchRes = $fetch->(PDO::FETCH_OBJ))//This is to fetch the results as a standard PHP obeject
+while($fetchRes = $fetch->fetch(PDO::FETCH_OBJ))//This is to fetch the results as a standard PHP obeject
 {
 	$id   = $fetchRes->id;
 	$stage = $fetchRes->stage;
