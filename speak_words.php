@@ -23,4 +23,5 @@ function speak_word($number)
 	//Thank you!
 
 }
+jnkkbk
 ?>
