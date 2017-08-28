@@ -17,11 +17,10 @@ function speak_word($number)
 		return $nump[$number];
 	}
 	$next_tens = floor($number/10);
-	$rems      = floor($number%10);
+	$rems      = floor($number%10)?"-".floor($number%10):"";
 
-	return $nump[$next_tens]."-".$nump[$rems];
+	return $nump[$next_tens].$nump[$rems];
 	//Thank you!
 
 }
-jnkkbk
 ?>
