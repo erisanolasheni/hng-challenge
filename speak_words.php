@@ -11,16 +11,18 @@ function speak_word($number)
 		return "Please enter a valid number!";
 	}
 	$number = (int)$number;
-	$nump = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','fourty','fifty','sixty','seven','eighty','ninety'];
+	$nump = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety'];
 	if($number<=20)
 	{
 		return $nump[$number];
 	}
-	$next_tens = floor($number/10);
-	$rems      = floor($number%10)?"-".floor($number%10):"";
-
-	return $nump[$next_tens].$nump[$rems];
+	$next_tens = floor($number/10)*10;
+	$rems      = floor($number%10)?floor($number%10):"";
+	$mid       = $rems?"-":"";
+	return $nump[20+($next_tens-20)/10].$mid.$nump[$rems];
 	//Thank you!
 
 }
+echo speak_word(19); /*returns 'ninteen'*/
+echo speak_word(74); /*returns 'sixty-nine'*/
 ?>
