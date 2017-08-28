@@ -1,25 +1,27 @@
 <?php
+// error_reporting(-1);
 //PHP connect to databse
-$host = 'host.com';
-$db   = 'challenge';
-$duser = 'user1.challenge';
-$dpass = 'myUserPass001';
+$host = 'localhost';
+$db   = 'hng_challenge';
+$duser = 'root';
+$dpass = '';
 
 //Connect now
 
-$con = new 	PDO("mysql:host=$host;dbname=$dbname;",$duser,$dpass);
+$con = new 	PDO("mysql:host=$host;dbname=$db;",$duser,$dpass);
 
 //Now fetch results using PDO
 
-$fetch = $con->prepare("select id, stage, task from challenge order by id desc");
+$results = $con->prepare("select id, stage, task from challenge");
+$results->execute();
 //Check if there is any inserted row
-if($fetch->rowCount())
+if($results->rowCount())
 {
 	?>
 	<table>
 	<tr><th>Id</th><th>Challenge Stage</th><th>Challenge Task</th></tr>
 	<?php
-while($fetchRes = $fetch->fetch(PDO::FETCH_OBJ))//This is to fetch the results as a standard PHP obeject
+while($fetchRes = $results->fetch(PDO::FETCH_OBJ))//This is to fetch the results as a standard PHP obeject
 {
 	$id   = $fetchRes->id;
 	$stage = $fetchRes->stage;
